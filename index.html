@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sentence analysis</title>
+</head>
+<body>
+  <h2>Sentence analysis</h2>
+  <p>Type a sentence ending with a period (.)</p>
+
+  <input type="text" id="sentenceInput" placeholder="Enter sentence here" />
+  <button onclick="analyze()">Analyze</button>
+
+  <div id="result" style="margin-top: 20px;"></div>
+
+  <script>
+    function analyze() {
+      const sentence = document.getElementById('sentenceInput').value;
+      let length = 0;
+      let words = 0;
+      let vowels = 0;
+      const vowelsList = ['a', 'e', 'i', 'o', 'u'];
+
+      if (!sentence.endsWith('.')) {
+        document.getElementById('result').innerHTML = "Please end the sentence with a period.";
+        return;
+      }
+
+      length = sentence.length;
+      words = sentence.trim().split(" ").length;
+      for (let char of sentence.toLowerCase()) {
+        if (vowelsList.includes(char)) {
+          vowels++;
+        }
+      }
+
+      document.getElementById('result').innerHTML = `
+        <strong>Results:</strong><br>
+        Sentence length: ${length} characters<br>
+        Number of words: ${words}<br>
+        Number of vowels: ${vowels}
+      `;
+    }
+  </script>
+</body>
+</html>
